@@ -1,14 +1,19 @@
-const StepTwo = ({ state, setState }) => {
+const StepTwo = ({ password, username, email, setisFormGood }) => {
   return (
     <>
       <div className="new-screen">
         <h1>Results</h1>
         <div>
-          <p>Name : {state}</p>
-          <p>Email : {state}</p>
-          <p>Password : {state}</p>
-          <button>Edit your information</button>
-          {/* mettre un onclick pour retourner au formulaire */}
+          <p>Name : {username}</p>
+          <p>Email : {email}</p>
+          <p>Password : {password}</p>
+          <button
+            onClick={() => {
+              setisFormGood(false);
+            }}
+          >
+            Edit your information
+          </button>
         </div>
       </div>
     </>

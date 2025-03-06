@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import StepTwo from "./components/StepTwo";
 import Footer from "./components/Footer";
+import Form from "./components/Form";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -41,62 +42,27 @@ function App() {
 
   return (
     <>
-      {/* parent-div en dessous */}
       <div className={isFormGood ? "step-two" : "parent-div"}>
-        <h1>Create account</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            placeholder="Nom d'utilisateur"
-            onChange={handleUsernameChange}
-            value={username}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="email@lereacteur.io"
-            onChange={handleEmailChange}
-            value={email}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            placeholder="azertY"
-            onChange={handlePasswordChange}
-            value={password}
-          />
-          <label htmlFor="verifyPassword">Confirm your password</label>
-          <input
-            id="verifyPassword"
-            type="password"
-            placeholder="azertY"
-            onChange={handleVerifyPasswordChange}
-            value={verifyPassword}
-          />
-          <button>Register</button>
-          {showError && <p>Les mots de passe ne sont pas identiques </p>}
-        </form>
+        <Form
+          username={username}
+          email={email}
+          password={password}
+          verifyPassword={verifyPassword}
+          handleEmailChange={handleEmailChange}
+          handlePasswordChange={handlePasswordChange}
+          handleUsernameChange={handleUsernameChange}
+          handleVerifyPasswordChange={handleVerifyPasswordChange}
+          handleSubmit={handleSubmit}
+          showError={showError}
+        />
       </div>
       <div className={isFormGood ? "new-screen" : "step-two"}>
-        <h1>Results</h1>
-        <div>
-          <p>Name : {username}</p>
-          <p>Email : {email}</p>
-          <p>Password : {password}</p>
-          <button
-            onClick={() => {
-              setisFormGood(false);
-            }}
-          >
-            Edit your information
-          </button>
-          {/* mettre un onclick pour retourner au formulaire */}
-        </div>
-        {/* <StepTwo /> */}
+        <StepTwo
+          password={password}
+          username={username}
+          email={email}
+          setisFormGood={setisFormGood}
+        />
       </div>
       <footer>
         <Footer />
